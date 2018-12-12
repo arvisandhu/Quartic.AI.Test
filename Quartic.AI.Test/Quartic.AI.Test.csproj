@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7FBA305F-FE08-4C0B-A655-20F49EF05B08}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Quartic.AI.Test</RootNamespace>
+    <AssemblyName>Quartic.AI.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Attributes\DateTimeAttribute.cs" />
+    <Compile Include="Attributes\DateTimeFormatAttribute.cs" />
+    <Compile Include="Attributes\DoNotIncludeInReflectionAttribute.cs" />
+    <Compile Include="Attributes\ExemptAttribute.cs" />
+    <Compile Include="Attributes\IntegerAttribute.cs" />
+    <Compile Include="Attributes\StringAttribute.cs" />
+    <Compile Include="Converters\ErrorDictionaryToStringConverter.cs" />
+    <Compile Include="Dialogs\ViewModels\MessageDialogViewModel.cs" />
+    <Compile Include="Dialogs\Views\MessageDialog.xaml.cs">
+      <DependentUpon>MessageDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Essentials\RelayCommand`1.cs" />
+    <Compile Include="Models\ElementProperty\ElementDataTemplateSelector.cs" />
+    <Compile Include="Services\ConfigurationService.cs" />
+    <Compile Include="Converters\TrueFalseToBooleanConverter.cs" />
+    <Compile Include="Services\DialogContainerService.cs" />
+    <Compile Include="Dialogs\DialogResult.cs" />
+    <Compile Include="Dialogs\ViewModels\DialogViewModelBase.cs" />
+    <Compile Include="Interfaces\IClosable.cs" />
+    <Compile Include="Dialogs\Views\NewRuleDialog.xaml.cs">
+      <DependentUpon>NewRuleDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ViewModels\NewRuleViewModel.cs" />
+    <Compile Include="Dialogs\Views\RuleManagementDialog.xaml.cs">
+      <DependentUpon>RuleManagementDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Enums\ValueDataType.cs" />
+    <Compile Include="Enums\TrueFalse.cs" />
+    <Compile Include="Essentials\ObservableObject.cs" />
+    <Compile Include="Essentials\RelayCommand.cs" />
+    <Compile Include="Extensions\TypeExtensions.cs" />
+    <Compile Include="Extensions\XElementExtensions.cs" />
+    <Compile Include="MainViewModel.cs" />
+    <Compile Include="Models\ElementProperty\ComboBoxProperty.cs" />
+    <Compile Include="Models\ElementProperty\DoubleProperty.cs" />
+    <Compile Include="Models\ElementProperty\ElementProperties.cs" />
+    <Compile Include="Models\ElementProperty\ElementProperty.cs" />
+    <Compile Include="Models\ElementProperty\IntegerProperty.cs" />
+    <Compile Include="Models\ElementProperty\TextProperty.cs" />
+    <Compile Include="SignalEngine\JsonSerializer.cs" />
+    <Compile Include="SignalEngine\JsonSignal.cs" />
+    <Compile Include="SignalEngine\SignalRule.cs" />
+    <Compile Include="Dialogs\ViewModels\RuleManagementViewModel.cs" />
+    <Compile Include="ValidationRules\DoubleInputValidationRule.cs" />
+    <Compile Include="ValidationRules\IntegerInputValidationRule.cs" />
+    <Compile Include="ValidationRules\LookupInputValidationRule.cs" />
+    <Compile Include="ValidationRules\RequiredFieldValidationRule.cs" />
+    <Page Include="Dialogs\Views\MessageDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Views\NewRuleDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Views\RuleManagementDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configuration\SignalDefinitions.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Images\delete.png" />
+    <Resource Include="Images\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

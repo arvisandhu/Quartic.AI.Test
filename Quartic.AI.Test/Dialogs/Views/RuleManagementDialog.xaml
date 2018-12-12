@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="Quartic.AI.Test.Dialogs.RuleManagementDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Quartic.AI.Test.Dialogs"
+             xmlns:converters="clr-namespace:Quartic.AI.Test.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Height="500" Width="700">
+
+    <UserControl.Resources>
+        <converters:TrueFalseToBooleanConverter x:Key="TrueFalseToBooleanConverter" />
+    </UserControl.Resources>
+
+    <Grid x:Name="rootGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal">
+            <Button Content="New Rule" Command="{Binding NewRuleCommand}" />
+            <Button Content="Edit Rule" Command="{Binding EditRuleCommand}" CommandParameter="{Binding ElementName=rulesDataGrid, Path=SelectedItem}" />
+            <Button Content="Delete Selected Rule(s)" Command="{Binding DeleteSelectedRulesCommand}" CommandParameter="{Binding ElementName=rulesDataGrid, Path=SelectedItems}" />
+            <Button Content="Delete All Rule(s)" Command="{Binding DeleteSelectedRulesCommand}" CommandParameter="ALL" />
+        </StackPanel>
+
+        <DataGrid x:Name="rulesDataGrid" Grid.Row="1" ItemsSource="{Binding SignalRules}" SelectedItem="{Binding SelectedSignalRule, Mode=TwoWay}"
+                  AutoGenerateColumns="False" CanUserAddRows="False" ColumnWidth="*">
+
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Signal ID" Binding="{Binding SignalID}" IsReadOnly="True" />
+
+                <DataGridTextColumn Header="Value Type" Binding="{Binding ValueType}" IsReadOnly="True" />
+
+                <DataGridCheckBoxColumn Header="Is Active?" Binding="{Binding IsActive, Converter={StaticResource TrueFalseToBooleanConverter}}" IsReadOnly="True" />
+
+                <DataGridTemplateColumn Header="Edit">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding ElementName=rootGrid, Path=DataContext.EditRuleCommand}" CommandParameter="{Binding}"
+                                    Content="" FontFamily="Segoe UI Symbol"
+                                    Margin="0" Padding="0" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Delete">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding ElementName=rootGrid, Path=DataContext.DeleteRuleCommand}" CommandParameter="{Binding}"
+                                    Content="" FontFamily="Segoe UI Symbol"
+                                    Margin="0" Padding="0" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+            <Button Content="{Binding PrimaryButtonText, Mode=OneWay}" Command="{Binding PrimaryCommand}" />
+            <TextBlock Width="40" />
+            <Button Content="{Binding SecondaryButtonText, Mode=OneWay}" Command="{Binding SecondaryCommand}" />
+        </StackPanel>
+    </Grid>
+</UserControl>
